@@ -1,0 +1,19 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - app
+        - config
+        - database
+        - tests
+        - bootstrap/providers.php
+        - routes/web.php
+
+    # Level 9 is the highest level
+    level: 6
+    parallel:
+            maximumNumberOfProcesses: 4
+    ignoreErrors:
+    		- identifier: missingType.generics

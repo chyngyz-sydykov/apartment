@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Attribute;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AttributeSeeder extends Seeder
@@ -14,15 +15,15 @@ class AttributeSeeder extends Seeder
     public function run(): void
     {
         Attribute::factory()->create([
-            'name' => 'wifi'
+            'name' => 'wifi',
         ]);
 
         Attribute::factory()->create([
-            'name' => 'tv'
+            'name' => 'tv',
         ]);
 
         Attribute::factory()->create([
-            'name' => 'heating'
+            'name' => 'heating',
         ]);
     }
 }

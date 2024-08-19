@@ -1,13 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Apartment;
-use App\Models\City;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Number;
-use Illuminate\Support\Str;
 
 class ApartmentSeeder extends Seeder
 {

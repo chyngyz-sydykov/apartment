@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Apartment;
@@ -18,8 +20,8 @@ class ImagesFactory extends Factory
     public function definition(): array
     {
         return [
-            'url'=>$this->faker->imageUrl(),
-            'apartment_id'=>Apartment::all()->random()->id,
+            'url' => $this->faker->imageUrl(),
+            'apartment_id' => Apartment::all()->random()->id,
         ];
     }
 }

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+echo "1 Running pint"
+./vendor/bin/sail pint
+echo "adding cs fixed files"
+fixed_files=$(git diff --name-only)
+if [ -n "$fixed_files" ]; then
+    echo "PHP CS Fixer has modified files. Adding them to the commit."
+    git add $fixed_files
+fi
+
+echo "2 Running phpStan ..."
+./vendor/bin/phpstan analyze
+
+echo "3 Running tests ..."
+./vendor/bin/sail test

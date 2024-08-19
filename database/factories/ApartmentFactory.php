@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\City;
@@ -18,11 +20,11 @@ class ApartmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'area' => fake()->numberBetween(15,100),
-            'room_number' => fake()->numberBetween(1,5),
+            'area' => fake()->numberBetween(15, 100),
+            'room_number' => fake()->numberBetween(1, 5),
             'address' => fake()->address(),
-            'price' =>fake()->randomFloat(0, 1000, 20000),
-            'city_id'=> City::all()->random()->id,
+            'price' => fake()->randomFloat(0, 1000, 20000),
+            'city_id' => City::all()->random()->id,
         ];
     }
 }
