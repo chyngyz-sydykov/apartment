@@ -10,7 +10,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_DB: postgresdb
+          POSTGRES_DB: testing
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: secret
         ports:
