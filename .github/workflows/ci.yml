@@ -1,0 +1,48 @@
+name: Run CI
+
+on: [ push ]
+
+jobs:
+  tests:
+    name: Run Code Analysis and Tests
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_DB: postgresdb
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: secret
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+          # use postgres for the host here because we have specified a container for the job.
+          # If we were running the job on the VM this would be localhost
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          extensions: pgsql
+
+      - name: Install composer dependencies
+        run: |
+          composer install --no-scripts
+
+      - name: Prepare Laravel Application
+        run: |
+          cp .env.ci .env
+          php artisan key:generate
+          php artisan migrate
+
+      - name: Run Pint
+        run: ./vendor/bin/pint
+      - name: Run phpStan
+        run: ./vendor/bin/phpstan analyze
+      - name: Run Tests
+        run: php artisan test --stop-on-failure

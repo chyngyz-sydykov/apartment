@@ -6,7 +6,7 @@ echo "adding cs fixed files"
 fixed_files=$(git diff --name-only)
 if [ -n "$fixed_files" ]; then
     echo "PHP CS Fixer has modified files. Adding them to the commit."
-    git add $fixed_files
+    git add "$fixed_files"
 fi
 
 echo "2 Running phpStan ..."
