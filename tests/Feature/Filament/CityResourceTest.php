@@ -18,6 +18,7 @@ class CityResourceTest extends TestCase
     use RefreshDatabase;
 
     public const COLUMN_NAME = 'name';
+    public const CITIES_TABLE_NAME = 'cities';
 
     protected function setUp(): void
     {
@@ -56,7 +57,7 @@ class CityResourceTest extends TestCase
             ->assertHasNoFormErrors();
 
         // assert
-        $this->assertDatabaseHas('cities', [
+        $this->assertDatabaseHas(self::CITIES_TABLE_NAME, [
             self::COLUMN_NAME => $cityName
         ]);
     }
@@ -72,7 +73,7 @@ class CityResourceTest extends TestCase
             ->assertHasFormErrors();
 
         // assert
-        $this->assertDatabaseMissing('cities', [
+        $this->assertDatabaseMissing(self::CITIES_TABLE_NAME, [
             self::COLUMN_NAME => ''
         ]);
     }
@@ -96,10 +97,10 @@ class CityResourceTest extends TestCase
             ->assertHasNoFormErrors();
 
         // assert
-        $this->assertDatabaseMissing('cities', [
+        $this->assertDatabaseMissing(self::CITIES_TABLE_NAME, [
             self::COLUMN_NAME => $oldCityName
         ]);
-        $this->assertDatabaseHas('cities', [
+        $this->assertDatabaseHas(self::CITIES_TABLE_NAME, [
             self::COLUMN_NAME => $newCityName
         ]);
     }
@@ -110,7 +111,7 @@ class CityResourceTest extends TestCase
     {
         // arrange
         $cityName = fake()->randomAscii();
-        $city = City::factory()->create(['name' => $cityName]);
+        $city = City::factory()->create([self::COLUMN_NAME => $cityName]);
 
         // act
         Livewire::test(CityResource\Pages\ListCities::class)
@@ -118,7 +119,7 @@ class CityResourceTest extends TestCase
 
         // assert
         $this->assertModelMissing($city);
-        $this->assertDatabaseMissing('cities', [
+        $this->assertDatabaseMissing(self::CITIES_TABLE_NAME, [
             self::COLUMN_NAME => $cityName
         ]);
     }

@@ -13,7 +13,7 @@ class Attribute extends Model
 {
     /** @use HasFactory<AttributeFactory> */
     use HasFactory;
-    //protected $fillable = [];
+    protected $fillable = ['name'];
 
     public function apartments(): BelongsToMany
     {
