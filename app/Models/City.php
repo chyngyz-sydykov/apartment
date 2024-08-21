@@ -14,6 +14,8 @@ class City extends Model
     /** @use HasFactory<CityFactory> */
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public function apartments(): hasMany
     {
         return $this->hasMany(Apartment::class);
