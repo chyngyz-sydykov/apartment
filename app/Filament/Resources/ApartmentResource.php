@@ -27,7 +27,7 @@ use Filament\Tables\Table;
 
 class ApartmentResource extends Resource
 {
-    public const ROOM_NUMBER_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    public const ROOM_NUMBER_LIST = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 10];
     protected static ?string $model = Apartment::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

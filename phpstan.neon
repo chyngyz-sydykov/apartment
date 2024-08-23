@@ -17,3 +17,4 @@ parameters:
             maximumNumberOfProcesses: 4
     ignoreErrors:
     		- identifier: missingType.generics
+    noUnnecessaryCollectionCall: false

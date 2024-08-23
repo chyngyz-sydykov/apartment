@@ -10,7 +10,7 @@ if [ -n "$fixed_files" ]; then
 fi
 
 echo "2 Running phpStan ..."
-./vendor/bin/phpstan analyze
+./vendor/bin/sail bin phpstan analyze
 
 echo "3 Running tests ..."
 ./vendor/bin/sail test
