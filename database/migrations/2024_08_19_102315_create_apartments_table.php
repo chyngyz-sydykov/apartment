@@ -17,9 +17,14 @@ return new class () extends Migration {
             $table->integer('area');
             $table->integer('room_number');
             $table->string('address')->nullable();
+            $table->text('description')->nullable();
             $table->float('price');
+            $table->boolean('is_active')->default(false);
             $table->foreignId('city_id')->constrained('cities')->nullOnDelete();
+            $table->foreignId('user_id')->default(1)->constrained('users')->nullOnDelete();
             $table->timestamps();
+
+            $table->index('user_id');
         });
     }
 

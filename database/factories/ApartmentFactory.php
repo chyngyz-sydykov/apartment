@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\City;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,8 +24,11 @@ class ApartmentFactory extends Factory
             'area' => fake()->numberBetween(15, 100),
             'room_number' => fake()->numberBetween(1, 5),
             'address' => fake()->address(),
+            'description' => null,
             'price' => fake()->randomFloat(0, 1000, 20000),
             'city_id' => City::all()->random()->id,
+            'user_id' => User::all()->random()->id,
+            'is_active' => fake()->boolean(),
         ];
     }
 }

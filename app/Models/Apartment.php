@@ -16,11 +16,16 @@ class Apartment extends Model
     /** @use HasFactory<ApartmentFactory> */
     use HasFactory;
 
-    //protected $fillable = [];
+    protected $fillable = ['area', 'room_number', 'price', 'address', 'description', 'is_active', 'city_id', 'user_id'];
 
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function images(): HasMany
