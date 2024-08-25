@@ -12,12 +12,15 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('apartment_attribute_values', function (Blueprint $table) {
+        Schema::create('apartment_attribute', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('apartment_id')->constrained('apartments')->cascadeOnDelete()->restrictOnDelete();
-            $table->foreignId('attribute_id')->constrained('attributes')->cascadeOnDelete()->restrictOnDelete();
-            $table->string('value');
+            $table->foreignId('apartment_id')->constrained('apartments')->cascadeOnDelete();
+            $table->foreignId('attribute_id')->constrained('attributes')->cascadeOnDelete();
+            $table->string('value')->nullable();
             $table->timestamps();
+
+            $table->index('apartment_id');
+            $table->index('attribute_id');
         });
     }
 

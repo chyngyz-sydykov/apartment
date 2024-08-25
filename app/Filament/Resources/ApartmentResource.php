@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ApartmentResource\Pages;
+use App\Filament\Resources\ApartmentResource\RelationManagers\AttributesRelationManager;
 use App\Models\Apartment;
 use App\Models\City;
 use App\Models\User;
@@ -63,8 +64,7 @@ class ApartmentResource extends Resource
                                 ->default(false)
                         ])->columns(1)->grow(false),
                     ])->from('md')
-
-                ]),
+                ])->columnSpanFull(),
             ]);
     }
 
@@ -110,7 +110,7 @@ class ApartmentResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AttributesRelationManager::class
         ];
     }
 
